@@ -8,7 +8,9 @@ namespace Week3CodeChallenge
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(FindNPrimes(6));
 
+            Console.ReadKey();
         }
         /// <summary>
         /// A function that calculates the starting value of the longest Collatz sequence.
@@ -39,7 +41,40 @@ namespace Week3CodeChallenge
         /// <returns>The prime number which is the n'th found</returns>
         public static int FindNPrimes(int maxPrime)
         {
-            return 0; // Default return value, replace this
+            int lastPrimeNumber = 7;
+            int primeCounter = 4;
+            int numberToCheck = 8;
+            bool isPrime = true;
+
+            while (primeCounter < maxPrime)
+            {
+                if (numberToCheck % 2 == 0)
+                {
+                    isPrime = false;
+                }
+                else
+                {
+                    for (int i = 3; i <= (int)(Math.Sqrt(numberToCheck)); i += 2)
+                    {
+                        if (numberToCheck % i == 0)
+                        {
+                            isPrime = false;
+                            break;
+                        } isPrime = true;
+                    }
+                }
+                if (isPrime)
+                {
+                    lastPrimeNumber = numberToCheck;
+                    numberToCheck++;
+                    primeCounter++;
+                }
+                else
+                {
+                    numberToCheck++;
+                }
+            }
+            return lastPrimeNumber; // Default return value, replace this
         }
     }
 }
